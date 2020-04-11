@@ -11,4 +11,24 @@ public class CabController {
     public void processRequest(){//Parameter : cabID, floorNumber
         
     }
+    
+    public void WeightChanged(){//cabID, newWeight 
+        
+    }
+    
+    public void AutoMode(){//cabID
+        
+    }
+    
+    public void HoldMode(){//cabID
+        
+    }
+    
+    public void EmergencyStopOn(){//cabID
+        
+    }
+    
+    public void EmergencyStopOff(){//cabID
+        
+    }
 }
