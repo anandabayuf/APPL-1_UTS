@@ -8,5 +8,11 @@ package Main;
  * @author Ananda Bayu
  */
 public class SummonRequestLogger {
+    public void addSummonRequestToQueue(){
+        
+    }
     
+    public void summonButtonPressed(){//Parameter : floorNumber, direction
+        
+    }
 }

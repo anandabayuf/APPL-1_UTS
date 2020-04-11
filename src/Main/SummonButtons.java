@@ -9,8 +9,15 @@ package Main;
  */
 public class SummonButtons {
     
+    public void turnLightOn(){
+        System.out.println("The light is on");
+    }
     
-    public void pressed(){
+    public void turnLightOff(){
+        System.out.println("The light is off");
+    }
+    
+    public void pressed(){//Parameter : floorNumber, direction
         
     }
     
