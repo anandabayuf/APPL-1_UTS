@@ -12,7 +12,11 @@ public class SummonRequestLogger {
         
     }
     
-    public void summonButtonPressed(int floorNumber){//Parameter : floorNumber, direction
+    /**
+     * @param direction
+     * @param floorNumber 
+     */
+    public void summonButtonPressed(int floorNumber){
         
     }
 }

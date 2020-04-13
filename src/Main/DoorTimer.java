@@ -8,15 +8,15 @@ package Main;
  * @author Ananda Bayu
  */
 public class DoorTimer {
-    public void StartTimer(){
+    public void startTimer(){
         
     }
     
-    public void StopTimer(){
+    public void stopTimer(){
         
     }
     
-    public void Reset(){
+    public void reset(){
         
     }
     

@@ -8,5 +8,10 @@ package Main;
  * @author Ananda Bayu
  */
 public class DirectionDisplay {
-    
+    /**
+     * @param direction
+     */
+    public void show(){
+        
+    }
 }

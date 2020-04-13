@@ -8,27 +8,47 @@ package Main;
  * @author Ananda Bayu
  */
 public class CabController {
-    public void processRequest(int floorNumber){//Parameter : cabID, floorNumber
+    /**
+     * @param cabID
+     * @param floorNumber 
+     */
+    public void processRequest(int floorNumber){
         
     }
     
-    public void WeightChanged(){//cabID, newWeight 
+    /**
+     * @param cabID
+     * @param newWeight
+     */
+    public void weightChanged(){ 
         
     }
     
-    public void AutoMode(){//cabID
+    /**
+     * @param cabID
+     */
+    public void autoMode(){
         
     }
     
-    public void HoldMode(){//cabID
+    /**
+     * @param cabID
+     */
+    public void holdMode(){
         
     }
     
-    public void EmergencyStopOn(){//cabID
+    /**
+     * @param cabID
+     */
+    public void emergencyStopOn(){
         
     }
     
-    public void EmergencyStopOff(){//cabID
+    /**
+     * @param cabID
+     */ 
+    public void emergencyStopOff(){
         
     }
 }

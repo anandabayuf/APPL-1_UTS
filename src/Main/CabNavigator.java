@@ -16,35 +16,42 @@ public class CabNavigator {
         
     }
     
-    void MoveToFloor(int floorNumber){
+    /**
+     * 
+     * @param floorNumber 
+     */
+    void moveToFloor(int floorNumber){
         
     }
     
-    void CalculateNewDirection(){
+    void calculateNewDirection(){
         
     }
     
-    void CalculateNewSpeed(){
+    void calculateNewSpeed(){
         
     }
     
-    void CalculateNewPosition(){
+    void calculateNewPosition(){
         
     }
     
-    boolean IsCabAtDestinationFloor(){
+    boolean isCabAtDestinationFloor(){
         return false;
     }
     
-    void MarkerDetected(){//cabID
+    /**
+     * @param cabID
+     */
+    void markerDetected(){ 
         
     }
     
-    void Suspend(){
+    void suspend(){
         
     }
     
-    void Resume(){
+    void resume(){
         
     }
 }

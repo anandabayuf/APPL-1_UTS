@@ -8,19 +8,19 @@ package Main;
  * @author Ananda Bayu
  */
 public class RequestDispatcher {
-    public void CheckQueueForRequests(){
+    public void dheckQueueForRequests(){
         
     }
     
-    public void DetermineNextRequestToProcess(){
+    public void determineNextRequestToProcess(){
         
     }
     
-    public void CheckForAvailableCabs(){
+    public void checkForAvailableCabs(){
         
     }
     
-    public void DetermineBestCab(){
+    public void determineBestCab(){
         
     }
 }

@@ -8,7 +8,11 @@ package Main;
  * @author Ananda Bayu
  */
 public class FloorRequestButton {
-    void pressed(){
+    /**
+     * @param cabID
+     * @param floorNumber
+     */
+    void pressed(int floorNumber){
         
     }
     

@@ -8,39 +8,53 @@ package Main;
  * @author Ananda Bayu
  */
 public class DoorOperator {
-    public void StartOperation(){
+    
+    public void startOperation(){
         
     }
     
-    public void DoorsOpened(){
+    /**
+     * @param cabID
+     */
+    public void doorsOpened(){
         
     }
     
-    public void DoorsClosed(){
+    /**
+     * @param cabID
+     */
+    public void doorsClosed(){
         
     }
     
-    public void Suspend(){
+    public void suspend(){
         
     }
     
-    public void Resume(){
+    public void resume(){
         
     }
     
-    public void SuspendFromLoad(){
+    public void suspendFromLoad(){
         
     }
     
-    public void ResumeFromLoad(){
+    public void resumeFromLoad(){
         
     }
     
-    public void OpenDoorButtonPressed(){// cabID 
+    /**
+     * @param cabID
+     */
+    public void openDoorButtonPressed(){
         
     }
     
-    public void SummonButtonPressed(int floorNumber){// floorNumber, direction 
+    /**
+     * @param direction 
+     * @param floorNumber 
+     */
+    public void summonButtonPressed(int floorNumber){
         
     }
 }
