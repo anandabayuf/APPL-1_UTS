@@ -8,7 +8,7 @@ package Main;
  * @author Ananda Bayu
  */
 public class CabController {
-    public void processRequest(){//Parameter : cabID, floorNumber
+    public void processRequest(int floorNumber){//Parameter : cabID, floorNumber
         
     }
     

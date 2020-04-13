@@ -17,7 +17,7 @@ public class SummonButtons {
         System.out.println("The light is off");
     }
     
-    public void pressed(){//Parameter : floorNumber, direction
+    public void pressed(int floorNumber){//Parameter : floorNumber, direction
         
     }
     

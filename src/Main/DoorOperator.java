@@ -40,7 +40,7 @@ public class DoorOperator {
         
     }
     
-    public void SummonButtonPressed(){// floorNumber, direction 
+    public void SummonButtonPressed(int floorNumber){// floorNumber, direction 
         
     }
 }
