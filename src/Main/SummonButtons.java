@@ -8,13 +8,21 @@ package Main;
  * @author Ananda Bayu
  */
 public class SummonButtons {
+    enum LightStatus {
+        OFF, 
+        ON
+    }
+    
+    LightStatus lightStatus;
     
     public void turnLightOn(){
-        System.out.println("The light is on");
+        //System.out.println("The light is on");
+        lightStatus = LightStatus.ON;
     }
     
     public void turnLightOff(){
-        System.out.println("The light is off");
+        //System.out.println("The light is off");
+        lightStatus = LightStatus.OFF;
     }
     
     /**
