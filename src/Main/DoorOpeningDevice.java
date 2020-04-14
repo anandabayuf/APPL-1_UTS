@@ -1,10 +1,10 @@
-package Controller;
+package Main;
 
 /**
  *
  * @author Raihan Ibrahim
  */
-public class DoorOpeningDeviceController {
+public class DoorOpeningDevice {
     void openDoors() {
         
     }

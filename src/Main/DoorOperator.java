@@ -46,8 +46,22 @@ public class DoorOperator {
     /**
      * @param cabID
      */
+    OpenDoorButton openDoorButton = new OpenDoorButton();
+    DoorTimer timer = new DoorTimer();
     public void openDoorButtonPressed(){
-        
+        while(openDoorButton.isPressed()) {
+            timer.stopTimer();
+            timer.reset();
+            doorsOpened();
+        }
+    }
+    
+    
+    public void openDoorButtonReleased() {
+        while(openDoorButton.isReleased()) {
+            timer.run();
+            doorsClosed();
+        }
     }
     
     /**
