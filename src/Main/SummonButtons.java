@@ -8,21 +8,14 @@ package Main;
  * @author Ananda Bayu
  */
 public class SummonButtons {
-    enum LightStatus {
-        OFF, 
-        ON
-    }
-    
-    LightStatus lightStatus;
+    private ElevatorController elevatorController;
     
     public void turnLightOn(){
-        //System.out.println("The light is on");
-        lightStatus = LightStatus.ON;
+        System.out.println("The light is on");
     }
     
     public void turnLightOff(){
-        //System.out.println("The light is off");
-        lightStatus = LightStatus.OFF;
+        System.out.println("The light is off");
     }
     
     /**
@@ -30,7 +23,7 @@ public class SummonButtons {
      * @param floorNumber 
      */
     public void pressed(int floorNumber){
-        
+        //elevatorController.
     }
     
     /**
