@@ -11,8 +11,8 @@ public class Door {
     }
     DoorStatus doorStatus;
     
-    public Door() {
-        this.doorStatus = DoorStatus.CLOSED;
+    public Door(DoorStatus status) {
+        this.doorStatus = status;
     }
     
     public boolean isOpened() {

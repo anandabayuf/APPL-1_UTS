@@ -19,6 +19,7 @@ public class ElevatorInfo {
     JTextField statusTextField;
     JTextField positionTextField;
     JTextField doorStatusTextField;
+    JTextField bellStatusTextField;
     Font font;
     
     public ElevatorInfo(){
@@ -84,5 +85,9 @@ public class ElevatorInfo {
     
     public void setDoorStatus(String status){
         doorStatusTextField.setText(status);
+    }
+    
+    public void setBellStatus(String status){
+        bellStatusTextField.setText(status);
     }
 }

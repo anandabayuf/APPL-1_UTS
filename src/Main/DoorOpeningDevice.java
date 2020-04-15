@@ -1,5 +1,7 @@
 package Main;
+
 import Model.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -10,11 +12,13 @@ public class DoorOpeningDevice {
         
     }
     
-    Door.DoorStatus sendOpenDoorSignal() {
+    Door.DoorStatus sendOpenDoorSignal() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
         return Door.DoorStatus.OPENED;
     }
 
-    Door.DoorStatus sendCloseDoorSignal() {
+    Door.DoorStatus sendCloseDoorSignal() throws InterruptedException { 
+        TimeUnit.SECONDS.sleep(3);
         return Door.DoorStatus.CLOSED;
     }
 }

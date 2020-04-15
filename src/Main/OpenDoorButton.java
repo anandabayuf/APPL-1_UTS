@@ -10,18 +10,16 @@ package Main;
  * @author Raihan Ibrahim
  */
 public class OpenDoorButton {
-    //String cabID;
-    
-    public OpenDoorButton() {
-        
-    }
-    
     public enum Status {
         PRESSED,
         RELEASED
     }
     
     Status openDoorButtonStatus;
+    
+    public OpenDoorButton(Status status) {
+        this.openDoorButtonStatus = status;
+    }
     
     void pressOpenDoorButton() {
        this.openDoorButtonStatus = Status.PRESSED;

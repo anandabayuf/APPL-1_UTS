@@ -93,6 +93,11 @@ public class ElevatorPanel{
         elevatorPanelFrame.setVisible(true);
         
         cabController = new Controller.CabController();
+        
+        //add action listener
+        emergencyBellButton.addActionListener(new BellListener());
+        openDoorButton.addActionListener(new OpenDoorButtonListener());
+        
     }
     
     void enableButton(){
@@ -273,6 +278,22 @@ public class ElevatorPanel{
             */
         }
         
+    }
+    
+    private class BellListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            elevatorInfo.setBellStatus("*RINGING!*");
+        }
+        
+    }
+    
+    private class OpenDoorButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            openDoorButtonLights(true);
+            elevatorInfo.setDoorStatus("*Careful! Door is opening*");
+        }
     }
     
 }
