@@ -77,19 +77,27 @@ public class SummonElevator{
         this.elevatorInfo = elevatorInfo;
     }
     
-    
+    /**
+     * @author Evan Lokajaya
+     */
     void enableButton(){
         groundFloor.setEnabled(true);
         firstFloor.setEnabled(true);
         secondFloor.setEnabled(true);
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     void disableButton(){
         groundFloor.setEnabled(false);
         firstFloor.setEnabled(false);
         secondFloor.setEnabled(false);
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     public void groundFloorButtonLights(boolean lights){
         if(lights == true){
             groundFloor.setBackground(Color.green);
@@ -99,6 +107,9 @@ public class SummonElevator{
         }
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     public void firstFloorButtonLights(boolean lights){
         if(lights == true){
             firstFloor.setBackground(Color.green);
@@ -108,6 +119,9 @@ public class SummonElevator{
         }
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     public void secondFloorButtonLights(boolean lights){
         if(lights == true){
             secondFloor.setBackground(Color.green);
@@ -119,6 +133,8 @@ public class SummonElevator{
     
     /**
      * @author Ananda Bayu
+     * @author Evan Lokajaya
+     * @author M. Hanif
      */
     private class GroundFloorListener implements ActionListener{
         SummonElevator summonElevator;
@@ -161,6 +177,11 @@ public class SummonElevator{
         
     }
     
+    /**
+     * @author Ananda Bayu
+     * @author Evan Lokajaya
+     * @author M. Hanif
+     */
     private class FirstFloorListener implements ActionListener{
         SummonElevator summonElevator;
         Timer timer;
@@ -200,6 +221,11 @@ public class SummonElevator{
         
     }
     
+    /**
+     * @author Ananda Bayu
+     * @author Evan Lokajaya
+     * @author M. Hanif
+     */
     private class SecondFloorListener implements ActionListener{
         SummonElevator summonElevator;
         Timer timer;

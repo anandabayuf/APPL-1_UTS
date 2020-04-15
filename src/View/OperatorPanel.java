@@ -58,6 +58,9 @@ public class OperatorPanel {
         operatorPanelFrame.setVisible(true);
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     private class OnListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -67,6 +70,9 @@ public class OperatorPanel {
         
     }
     
+    /**
+     * @author Evan Lokajaya
+     */
     private class OffListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

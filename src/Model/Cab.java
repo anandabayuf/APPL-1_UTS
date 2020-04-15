@@ -10,8 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * @author Evan Lokajaya
  * @author Ananda Bayu
+ * @author Raihan Ibrahim
  */
 public class Cab {
     private Floor floor;

@@ -54,6 +54,10 @@ public class CabController{
         process.clear();
     }
     
+    /**
+    * @author Ananda Bayu
+    * @author Evan Lokajaya
+    */
     public void move(Floor destinationFloor, ElevatorPanel elevatorPanel, ElevatorInfo elevatorInfo, SummonElevator summonElevator){
         temp = cab.getFloor().getValue();
         
