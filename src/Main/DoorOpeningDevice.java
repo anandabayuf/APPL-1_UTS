@@ -1,15 +1,20 @@
 package Main;
+import Model.*;
 
 /**
  *
  * @author Raihan Ibrahim
  */
 public class DoorOpeningDevice {
-    void openDoors() {
+    public DoorOpeningDevice() {
         
     }
     
-    void closeDoors() {
-        
+    Door.DoorStatus sendOpenDoorSignal() {
+        return Door.DoorStatus.OPENED;
+    }
+
+    Door.DoorStatus sendCloseDoorSignal() {
+        return Door.DoorStatus.CLOSED;
     }
 }
