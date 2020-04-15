@@ -5,15 +5,17 @@
  */
 package View;
 
+import Controller.CabController;
+
 /**
  *
  * @author Evan Lokajaya
  */
 public class Elevator {
     public static void main(String args[]){
+        CabController cabController = new Controller.CabController();
         ElevatorInfo elevatorInfo = new ElevatorInfo();
-        ElevatorPanel elevatorPanel= new ElevatorPanel();
-        SummonElevator summonElevator = new SummonElevator(elevatorPanel, elevatorInfo);
-        OperatorPanel operatorPanel =new OperatorPanel(elevatorPanel, elevatorInfo, summonElevator);
+        ElevatorPanel elevatorPanel= new ElevatorPanel(elevatorInfo, cabController);
+        OperatorPanel operatorPanel =new OperatorPanel(elevatorPanel, elevatorInfo, elevatorPanel.getSummonElevator(), cabController);
     }
 }

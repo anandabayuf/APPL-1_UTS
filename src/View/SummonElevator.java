@@ -5,14 +5,18 @@
  */
 package View;
 
+import Controller.CabController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import Model.Cab.*;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 
 /**
  *
@@ -27,10 +31,15 @@ public class SummonElevator{
     ElevatorPanel elevatorPanel;
     ElevatorInfo elevatorInfo;
     
-    public SummonElevator(ElevatorPanel elevatorPanel, ElevatorInfo elevatorInfo){
+    public SummonElevator(ElevatorPanel elevatorPanel, ElevatorInfo elevatorInfo, CabController cabController){
         JFrame summonElevator = new JFrame("Summon Elevator");
         summonElevator.setSize(400, 220);
         summonElevator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //assigning the parameter
+        this.elevatorPanel = elevatorPanel;
+        this.elevatorInfo = elevatorInfo;
+        this.cabController = cabController;
         
         //Initiate Button
         groundFloor = new JButton("Ground Floor");
@@ -60,15 +69,14 @@ public class SummonElevator{
         summonElevator.setVisible(true);
         
         //add action listener
-        groundFloor.addActionListener(new GroundFloorListener());
-        firstFloor.addActionListener(new FirstFloorListener());
-        secondFloor.addActionListener(new SecondFloorListener());
-        
-        cabController = new Controller.CabController();
+        groundFloor.addActionListener(new GroundFloorListener(this));
+        firstFloor.addActionListener(new FirstFloorListener(this));
+        secondFloor.addActionListener(new SecondFloorListener(this));
         
         this.elevatorPanel = elevatorPanel;
         this.elevatorInfo = elevatorInfo;
     }
+    
     
     void enableButton(){
         groundFloor.setEnabled(true);
@@ -82,7 +90,7 @@ public class SummonElevator{
         secondFloor.setEnabled(false);
     }
     
-    void groundFloorButtonLights(boolean lights){
+    public void groundFloorButtonLights(boolean lights){
         if(lights == true){
             groundFloor.setBackground(Color.green);
         }
@@ -91,7 +99,7 @@ public class SummonElevator{
         }
     }
     
-    void firstFloorButtonLights(boolean lights){
+    public void firstFloorButtonLights(boolean lights){
         if(lights == true){
             firstFloor.setBackground(Color.green);
         }
@@ -100,7 +108,7 @@ public class SummonElevator{
         }
     }
     
-    void secondFloorButtonLights(boolean lights){
+    public void secondFloorButtonLights(boolean lights){
         if(lights == true){
             secondFloor.setBackground(Color.green);
         }
@@ -113,84 +121,119 @@ public class SummonElevator{
      * @author Ananda Bayu
      */
     private class GroundFloorListener implements ActionListener{
+        SummonElevator summonElevator;
+        Timer timer;
+        
+        public GroundFloorListener(SummonElevator summonElevator){
+            this.summonElevator = summonElevator;
+        }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             if(cabController.getCab().getFloor().equals(Floor.GroundFloor)){
                 groundFloorButtonLights(turnOn);
-                //opendoor
-                //timer
-                //closedoor
-                //groundFloorButtonLights(turnOff);
+                cabController.getCab().setDoorStatus(Door.Open);
+                elevatorInfo.setDoorStatus("Open");
+                elevatorInfo.setStatus("Waiting");
+                
+                timer = new Timer(2500, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        cabController.getCab().setDoorStatus(Door.Closed);
+                        elevatorInfo.setDoorStatus("Closed");
+                        elevatorInfo.setStatus("Running");
+                        groundFloorButtonLights(turnOff);
+                    }
+                });
+                
+                timer.start();
+                
             }
             else{
                 elevatorInfo.setStatus("Running");
                 elevatorInfo.setDoorStatus("Closed");
                 groundFloorButtonLights(turnOn);
                 cabController.getProcess().add(Floor.GroundFloor);
-                try {
-                    
-                    cabController.move(Floor.GroundFloor, elevatorPanel, elevatorInfo);
-                    //wait
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                groundFloorButtonLights(turnOff);
+                cabController.move(Floor.GroundFloor, elevatorPanel, elevatorInfo, summonElevator);
+                 
             }
         }
         
     }
     
     private class FirstFloorListener implements ActionListener{
+        SummonElevator summonElevator;
+        Timer timer;
+        
+        public FirstFloorListener(SummonElevator summonElevator){
+            this.summonElevator = summonElevator;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
             if(cabController.getCab().getFloor().equals(Floor.FirstFloor)){
                 firstFloorButtonLights(turnOn);
-                //opendoor
-                //timer
-                //closedoor
-                //groundFloorButtonLights(turnOff);
+                cabController.getCab().setDoorStatus(Door.Open);
+                elevatorInfo.setDoorStatus("Open");
+                elevatorInfo.setStatus("Waiting");
+                
+                timer = new Timer(2000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        cabController.getCab().setDoorStatus(Door.Closed);
+                        elevatorInfo.setDoorStatus("Closed");
+                        elevatorInfo.setStatus("Running");
+                        firstFloorButtonLights(turnOff);
+                    }
+                });
+                
+                timer.start();
             }
             else{
                 elevatorInfo.setStatus("Running");
                 elevatorInfo.setDoorStatus("Closed");
                 firstFloorButtonLights(turnOn);
-                cabController.getProcess().add(Floor.FirstFloor);
-                try {
-                    
-                    cabController.move(Floor.FirstFloor, elevatorPanel, elevatorInfo);
-                    //wait
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                firstFloorButtonLights(turnOff);
+                cabController.getProcess().add(Floor.FirstFloor);      
+                cabController.move(Floor.FirstFloor, elevatorPanel, elevatorInfo, summonElevator);
+              
             }
         }
         
     }
     
     private class SecondFloorListener implements ActionListener{
+        SummonElevator summonElevator;
+        Timer timer;
+        
+        public SecondFloorListener(SummonElevator summonElevator){
+            this.summonElevator = summonElevator;
+        }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             if(cabController.getCab().getFloor().equals(Floor.SecondFloor)){
                 secondFloorButtonLights(turnOn);
-                //opendoor
-                //timer
-                //closedoor
-                //groundFloorButtonLights(turnOff);
+                cabController.getCab().setDoorStatus(Door.Open);
+                elevatorInfo.setDoorStatus("Open");
+                elevatorInfo.setStatus("Waiting");
+                
+                timer = new Timer(2000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        cabController.getCab().setDoorStatus(Door.Closed);
+                        elevatorInfo.setDoorStatus("Closed");
+                        elevatorInfo.setStatus("Running");
+                        secondFloorButtonLights(turnOff);
+                    }
+                });
+                timer.start();
             }
             else{
+                secondFloorButtonLights(turnOn);
                 elevatorInfo.setStatus("Running");
                 elevatorInfo.setDoorStatus("Closed");
-                secondFloorButtonLights(turnOn);
-                cabController.getProcess().add(Floor.SecondFloor);
-                try {
-                    
-                    cabController.move(Floor.SecondFloor, elevatorPanel, elevatorInfo);
-                    //wait
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                secondFloorButtonLights(turnOff);
+                cabController.getProcess().add(Floor.SecondFloor);    
+                cabController.move(Floor.SecondFloor, elevatorPanel, elevatorInfo, summonElevator);
+                
             }
         }
         
