@@ -13,7 +13,7 @@ public class Elevator {
     public static void main(String args[]){
         ElevatorInfo elevatorInfo = new ElevatorInfo();
         ElevatorPanel elevatorPanel= new ElevatorPanel();
-        SummonElevator summonElevator = new SummonElevator();
+        SummonElevator summonElevator = new SummonElevator(elevatorPanel, elevatorInfo);
         OperatorPanel operatorPanel =new OperatorPanel(elevatorPanel, elevatorInfo, summonElevator);
     }
 }

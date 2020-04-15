@@ -29,7 +29,7 @@ public class ElevatorPanel{
         elevatorPanelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Initiate Font for Floor Field
-        floorTextFieldFont = new Font("SansSerif", Font.BOLD, 70);
+        floorTextFieldFont = new Font("SansSerif", Font.BOLD, 20);
         
         //Initiate Floor Field in Elevator Panel
         floorTextField = new JTextField("");
@@ -97,7 +97,7 @@ public class ElevatorPanel{
         openDoorButton.setEnabled(false);
     }
     
-    void setFloorTextField(String s){
+    public void setFloorTextField(String s){
         floorTextField.setText(s);
     }
     

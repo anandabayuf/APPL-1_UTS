@@ -3,6 +3,9 @@
  */
 package Model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Ananda Bayu
@@ -16,7 +19,30 @@ public class Cab {
     }
     
     public enum Floor{
-        GroundFloor ,FirstFloor, SecondFloor;
+        GroundFloor(0),
+        FirstFloor(1), 
+        SecondFloor(2);
+        
+        private int value;
+        private static Map map = new HashMap<>();
+
+        private Floor(int value) {
+            this.value = value;
+        }
+
+        static {
+            for (Floor floor : Floor.values()) {
+                map.put(floor.value, floor);
+            }
+        }
+
+        public static Floor valueOf(int floor) {
+            return (Floor) map.get(floor);
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
     
     public Cab(Direction direction, Floor floor){
