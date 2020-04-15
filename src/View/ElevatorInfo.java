@@ -74,15 +74,15 @@ public class ElevatorInfo {
         elevatorInfoFrame.setVisible(true);
     }
     
-    void setStatus(String status){
+    public void setStatus(String status){
         statusTextField.setText(status);
     }
     
-    void setPosition(String pos){
+    public void setPosition(String pos){
         positionTextField.setText(pos);
     }
     
-    void setDoorStatus(String status){
+    public void setDoorStatus(String status){
         doorStatusTextField.setText(status);
     }
 }

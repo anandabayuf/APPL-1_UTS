@@ -6,19 +6,28 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import Model.Cab.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Evan Lokajaya
  */
-public class SummonElevator {
+public class SummonElevator{
     JButton groundFloor;
     JButton firstFloor;
     JButton secondFloor;
+    boolean turnOn = true, turnOff = false;
+    Controller.CabController cabController;
+    ElevatorPanel elevatorPanel;
+    ElevatorInfo elevatorInfo;
     
-    public SummonElevator(){
+    public SummonElevator(ElevatorPanel elevatorPanel, ElevatorInfo elevatorInfo){
         JFrame summonElevator = new JFrame("Summon Elevator");
         summonElevator.setSize(400, 220);
         summonElevator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +58,16 @@ public class SummonElevator {
         summonElevator.setLocationRelativeTo(null);
         summonElevator.setLayout(null);
         summonElevator.setVisible(true);
+        
+        //add action listener
+        groundFloor.addActionListener(new GroundFloorListener());
+        firstFloor.addActionListener(new FirstFloorListener());
+        secondFloor.addActionListener(new SecondFloorListener());
+        
+        cabController = new Controller.CabController();
+        
+        this.elevatorPanel = elevatorPanel;
+        this.elevatorInfo = elevatorInfo;
     }
     
     void enableButton(){
@@ -88,5 +107,92 @@ public class SummonElevator {
         else{
             secondFloor.setBackground(Color.lightGray);
         }
+    }
+    
+    /**
+     * @author Ananda Bayu
+     */
+    private class GroundFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(cabController.getCab().getFloor().equals(Floor.GroundFloor)){
+                groundFloorButtonLights(turnOn);
+                //opendoor
+                //timer
+                //closedoor
+                //groundFloorButtonLights(turnOff);
+            }
+            else{
+                elevatorInfo.setStatus("Running");
+                elevatorInfo.setDoorStatus("Closed");
+                groundFloorButtonLights(turnOn);
+                cabController.getProcess().add(Floor.GroundFloor);
+                try {
+                    
+                    cabController.move(Floor.GroundFloor, elevatorPanel, elevatorInfo);
+                    //wait
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                groundFloorButtonLights(turnOff);
+            }
+        }
+        
+    }
+    
+    private class FirstFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(cabController.getCab().getFloor().equals(Floor.FirstFloor)){
+                firstFloorButtonLights(turnOn);
+                //opendoor
+                //timer
+                //closedoor
+                //groundFloorButtonLights(turnOff);
+            }
+            else{
+                elevatorInfo.setStatus("Running");
+                elevatorInfo.setDoorStatus("Closed");
+                firstFloorButtonLights(turnOn);
+                cabController.getProcess().add(Floor.FirstFloor);
+                try {
+                    
+                    cabController.move(Floor.FirstFloor, elevatorPanel, elevatorInfo);
+                    //wait
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                firstFloorButtonLights(turnOff);
+            }
+        }
+        
+    }
+    
+    private class SecondFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(cabController.getCab().getFloor().equals(Floor.SecondFloor)){
+                secondFloorButtonLights(turnOn);
+                //opendoor
+                //timer
+                //closedoor
+                //groundFloorButtonLights(turnOff);
+            }
+            else{
+                elevatorInfo.setStatus("Running");
+                elevatorInfo.setDoorStatus("Closed");
+                secondFloorButtonLights(turnOn);
+                cabController.getProcess().add(Floor.SecondFloor);
+                try {
+                    
+                    cabController.move(Floor.SecondFloor, elevatorPanel, elevatorInfo);
+                    //wait
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                secondFloorButtonLights(turnOff);
+            }
+        }
+        
     }
 }
