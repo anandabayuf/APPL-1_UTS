@@ -16,7 +16,7 @@ public class DoorOperator {
     OpenDoorButton openDoorButton;
     DoorTimer timer;
     DoorOpeningDevice doorOpeningDevice;
-    ElevatorInfo elevatorInfo;
+    ElevatorInfo elevatorInfo = new ElevatorInfo();
     ElevatorPanel elevatorPanel;
 
     public DoorOperator() {
