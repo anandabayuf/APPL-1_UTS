@@ -5,6 +5,7 @@
 package View;
 
 import Controller.CabController;
+import Model.Cab;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -236,13 +237,15 @@ public class ElevatorPanel{
         @Override
         public void actionPerformed(ActionEvent e) {
             openDoorButtonLights(true);
+            cabController.getCab().setDoorStatus(Cab.Door.Open);
             elevatorInfo.setDoorStatus("Open");
             elevatorInfo.setStatus("Waiting");
             
-            Timer timer = new Timer(2500, new ActionListener() {
+            Timer timer = new Timer(5000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     openDoorButtonLights(false);
+                    cabController.getCab().setDoorStatus(Cab.Door.Closed);
                     elevatorInfo.setDoorStatus("Closed");
                     elevatorInfo.setStatus("Running");
                 }

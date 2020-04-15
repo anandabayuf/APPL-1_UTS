@@ -89,6 +89,13 @@ public class ElevatorInfo {
     }
     
     public void setStatus(String status){
+        if(status.equals("Running")){
+            statusTextField.setDisabledTextColor(Color.green);
+        }else if(status.equals("Waiting")){
+            statusTextField.setDisabledTextColor(Color.orange);
+        }else{
+            statusTextField.setDisabledTextColor(Color.red);
+        }
         statusTextField.setText(status);
     }
     
