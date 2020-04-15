@@ -6,6 +6,7 @@
 
 package View;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,11 +20,12 @@ public class ElevatorInfo {
     JTextField statusTextField;
     JTextField positionTextField;
     JTextField doorStatusTextField;
+    JTextField bellStatusTextField;
     Font font;
     
     public ElevatorInfo(){
         JFrame elevatorInfoFrame = new JFrame("Elevator Info");
-        elevatorInfoFrame.setSize(350, 350);
+        elevatorInfoFrame.setSize(500, 500);
         elevatorInfoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //setting the font
@@ -33,16 +35,20 @@ public class ElevatorInfo {
         JLabel statusLabel = new JLabel("Status");
         JLabel positionLabel = new JLabel("Position");
         JLabel doorLabel = new JLabel("Door");
+        JLabel bellLabel = new JLabel("Bell");
+        
         
         //initiate text-field
         statusTextField = new JTextField("Running");
         positionTextField = new JTextField("0");
         doorStatusTextField = new JTextField("Closed");
+        bellStatusTextField = new JTextField("");
         
         //disabled edit on text field
         statusTextField.setEnabled(false);
         positionTextField.setEnabled(false);
         doorStatusTextField.setEnabled(false);
+        bellStatusTextField.setEnabled(false);
         
         //set label position and font
         statusLabel.setFont(font);
@@ -51,6 +57,8 @@ public class ElevatorInfo {
         positionLabel.setBounds(20, 120, 100, 50);
         doorLabel.setFont(font);
         doorLabel.setBounds(20, 220, 100, 50);
+        bellLabel.setFont(font);
+        bellLabel.setBounds(20, 320, 100, 50);
         
         //set text field position and font
         statusTextField.setFont(font);
@@ -60,14 +68,20 @@ public class ElevatorInfo {
         positionTextField.setBounds(120, 120, 50, 50);
         doorStatusTextField.setFont(font);
         doorStatusTextField.setBounds(120, 220, 100, 50);
+        bellStatusTextField.setDisabledTextColor(Color.red);
+        bellStatusTextField.setFont(font);
+        bellStatusTextField.setHorizontalAlignment(JTextField.CENTER);
+        bellStatusTextField.setBounds(120, 320, 200, 50);
         
         //add the component
         elevatorInfoFrame.add(statusLabel);
         elevatorInfoFrame.add(positionLabel);
         elevatorInfoFrame.add(doorLabel);
+        elevatorInfoFrame.add(bellLabel);
         elevatorInfoFrame.add(statusTextField);
         elevatorInfoFrame.add(positionTextField);
         elevatorInfoFrame.add(doorStatusTextField);
+        elevatorInfoFrame.add(bellStatusTextField);
         
         elevatorInfoFrame.setLocationRelativeTo(null);
         elevatorInfoFrame.setLayout(null);
@@ -83,6 +97,15 @@ public class ElevatorInfo {
     }
     
     public void setDoorStatus(String status){
+        if(status.equals("Open")){
+            doorStatusTextField.setDisabledTextColor(Color.green);
+        }else{
+            doorStatusTextField.setDisabledTextColor(Color.red);
+        }
         doorStatusTextField.setText(status);
+    }
+    
+    public void setBellStatus(String status){
+        bellStatusTextField.setText(status);
     }
 }

@@ -4,7 +4,13 @@
  */
 package View;
 
+import Controller.CabController;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -23,10 +29,21 @@ public class ElevatorPanel{
     JButton emergencyBellButton;
     JButton openDoorButton;
     
-    public ElevatorPanel(){
+    ElevatorInfo elevatorInfo;
+    SummonElevator summonElevator;
+    CabController cabController;
+    
+    public ElevatorPanel(ElevatorInfo elevatorInfo, CabController cabController){
         JFrame elevatorPanelFrame = new JFrame("Elevator Panel");
         elevatorPanelFrame.setSize(300, 500);
         elevatorPanelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //assigning the parameter
+        this.elevatorInfo = elevatorInfo;
+        this.cabController = cabController;
+        
+        //Initiate Elevator Summon
+        summonElevator = new SummonElevator(this, elevatorInfo, cabController);
         
         //Initiate Font for Floor Field
         floorTextFieldFont = new Font("SansSerif", Font.BOLD, 20);
@@ -77,10 +94,23 @@ public class ElevatorPanel{
         elevatorPanelFrame.add(emergencyBellButton);
         elevatorPanelFrame.add(emergencyStopButton);
         
+        //add Action Listener
+        emergencyStopButton.addActionListener(new StopListener());
+        emergencyBellButton.addActionListener(new BellListener());
+        openDoorButton.addActionListener(new openDoorLIstener());
+        
         elevatorPanelFrame.setLocationRelativeTo(null);
         elevatorPanelFrame.setLayout(null);
         elevatorPanelFrame.setVisible(true);
         
+    }
+    
+    SummonElevator getSummonElevator(){
+        return summonElevator;
+    }
+    
+    void timer(int second) throws InterruptedException{
+        TimeUnit.SECONDS.sleep(second);
     }
     
     void enableButton(){
@@ -101,7 +131,7 @@ public class ElevatorPanel{
         floorTextField.setText(s);
     }
     
-    void groundFloorButtonLights(boolean lights){
+    public void groundFloorButtonLights(boolean lights){
         if(lights == true){
             groundFloorButton.setBackground(Color.green);
         }
@@ -110,7 +140,7 @@ public class ElevatorPanel{
         }
     }
     
-    void firstFloorButtonLights(boolean lights){
+    public void firstFloorButtonLights(boolean lights){
         if(lights == true){
             firstFloorButton.setBackground(Color.green);
         }
@@ -119,7 +149,7 @@ public class ElevatorPanel{
         }
     }
     
-    void secondFloorButtonLights(boolean lights){
+    public void secondFloorButtonLights(boolean lights){
         if(lights == true){
             secondFloorButton.setBackground(Color.green);
         }
@@ -154,4 +184,72 @@ public class ElevatorPanel{
             emergencyBellButton.setBackground(Color.lightGray);
         }
     }
+
+    private class StopListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(emergencyStopButton.getBackground() == Color.lightGray){
+            summonElevator.firstFloorButtonLights(false);
+            summonElevator.secondFloorButtonLights(false);
+            summonElevator.groundFloorButtonLights(false);
+            summonElevator.disableButton();
+            
+            groundFloorButton.setEnabled(false);
+            firstFloorButton.setEnabled(false);
+            secondFloorButton.setEnabled(false);
+            openDoorButton.setEnabled(false);
+            
+            elevatorInfo.setDoorStatus("Closed");
+            elevatorInfo.setPosition("");
+            elevatorInfo.setStatus("Disabled");
+            
+            emergencyStopButtonLights(true);
+            }
+            else{
+                
+                elevatorInfo.setStatus("Running");
+                summonElevator.enableButton();
+                groundFloorButton.setEnabled(true);
+                firstFloorButton.setEnabled(true);
+                secondFloorButton.setEnabled(true);
+                openDoorButton.setEnabled(true);
+                emergencyStopButtonLights(false);
+            }
+        }
+    }
+    
+    private class BellListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if(emergencyBellButton.getBackground() == Color.green){
+                emergencyBellButton.setBackground(Color.lightGray);
+                elevatorInfo.setBellStatus("");
+            }
+            else{
+                emergencyBellButton.setBackground(Color.green);
+                elevatorInfo.setBellStatus("*RINGING!*");
+            }
+        }
+    }
+    
+    private class openDoorLIstener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            openDoorButtonLights(true);
+            elevatorInfo.setDoorStatus("Open");
+            elevatorInfo.setStatus("Waiting");
+            
+            Timer timer = new Timer(2500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    openDoorButtonLights(false);
+                    elevatorInfo.setDoorStatus("Closed");
+                    elevatorInfo.setStatus("Running");
+                }
+            });
+            timer.start();
+        }
+        
+    }
 }
+
