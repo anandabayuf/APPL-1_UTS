@@ -5,6 +5,8 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -29,7 +31,7 @@ public class ElevatorPanel{
         elevatorPanelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Initiate Font for Floor Field
-        floorTextFieldFont = new Font("SansSerif", Font.BOLD, 70);
+        floorTextFieldFont = new Font("SansSerif", Font.BOLD, 20);
         
         //Initiate Floor Field in Elevator Panel
         floorTextField = new JTextField("");
@@ -45,6 +47,11 @@ public class ElevatorPanel{
         openDoorButton = new JButton("<|>");
         emergencyStopButton = new JButton("Emergency Stop");
         emergencyBellButton = new JButton("Emergency Bell");
+        
+        //add action listener
+        groundFloorButton.addActionListener(new GroundFloorButtonListener());
+        firstFloorButton.addActionListener(new FirstFloorButtonListener());
+        secondFloorButton.addActionListener(new SecondFloorButtonListener());
         
         //set the location
         groundFloorButton.setBounds(50, 175, 50, 50);
@@ -97,7 +104,7 @@ public class ElevatorPanel{
         openDoorButton.setEnabled(false);
     }
     
-    void setFloorTextField(String s){
+    public void setFloorTextField(String s){
         floorTextField.setText(s);
     }
     
@@ -154,4 +161,26 @@ public class ElevatorPanel{
             emergencyBellButton.setBackground(Color.lightGray);
         }
     }
+    
+    private class GroundFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
+    private class FirstFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
+    private class SecondFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
 }
