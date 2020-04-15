@@ -31,4 +31,7 @@ public class CabController {
     public Cab getCab(){
         return cab;
     }
+    
+    public void move(Floor destinationFloor){
+    }
 }
