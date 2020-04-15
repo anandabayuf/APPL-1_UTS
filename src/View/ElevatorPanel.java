@@ -5,6 +5,8 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -45,6 +47,11 @@ public class ElevatorPanel{
         openDoorButton = new JButton("<|>");
         emergencyStopButton = new JButton("Emergency Stop");
         emergencyBellButton = new JButton("Emergency Bell");
+        
+        //add action listener
+        groundFloorButton.addActionListener(new GroundFloorButtonListener());
+        firstFloorButton.addActionListener(new FirstFloorButtonListener());
+        secondFloorButton.addActionListener(new SecondFloorButtonListener());
         
         //set the location
         groundFloorButton.setBounds(50, 175, 50, 50);
@@ -154,4 +161,26 @@ public class ElevatorPanel{
             emergencyBellButton.setBackground(Color.lightGray);
         }
     }
+    
+    private class GroundFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
+    private class FirstFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
+    private class SecondFloorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+        
+    }
+    
 }
