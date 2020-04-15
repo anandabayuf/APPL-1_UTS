@@ -5,18 +5,29 @@
  */
 package View;
 
+import Model.Cab;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.Queue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import Model.Cab.*;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Evan Lokajaya
  */
-public class SummonElevator {
+public class SummonElevator{
     JButton groundFloor;
     JButton firstFloor;
     JButton secondFloor;
+    boolean turnOn = true, turnOff = false;
+    Controller.CabController cabController;
     
     public SummonElevator(){
         JFrame summonElevator = new JFrame("Summon Elevator");
@@ -49,6 +60,15 @@ public class SummonElevator {
         summonElevator.setLocationRelativeTo(null);
         summonElevator.setLayout(null);
         summonElevator.setVisible(true);
+        
+        //add action listener
+        groundFloor.addActionListener(new GroundFloorListener());
+        firstFloor.addActionListener(new FirstFloorListener());
+        secondFloor.addActionListener(new SecondFloorListener());
+        
+        cabController = new Controller.CabController();
+        
+        
     }
     
     void enableButton(){
@@ -88,5 +108,40 @@ public class SummonElevator {
         else{
             secondFloor.setBackground(Color.lightGray);
         }
+    }
+    
+    /**
+     * @author Ananda Bayu
+     */
+    private class GroundFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(cabController.getCab().getFloor().equals(Floor.GroundFloor)){
+                groundFloorButtonLights(turnOn);
+                
+                //groundFloorButtonLights(turnOff);
+            }
+            else{
+                groundFloorButtonLights(turnOn);
+                //wait
+            }
+        }
+        
+    }
+    
+    private class FirstFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            firstFloorButtonLights(true);
+        }
+        
+    }
+    
+    private class SecondFloorListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            secondFloorButtonLights(true);
+        }
+        
     }
 }
