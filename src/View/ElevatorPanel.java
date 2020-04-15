@@ -25,6 +25,10 @@ public class ElevatorPanel{
     JButton emergencyBellButton;
     JButton openDoorButton;
     
+    Controller.CabController cabController;
+    ElevatorPanel elevatorPanel;
+    ElevatorInfo elevatorInfo;
+    
     public ElevatorPanel(){
         JFrame elevatorPanelFrame = new JFrame("Elevator Panel");
         elevatorPanelFrame.setSize(300, 500);
@@ -88,6 +92,7 @@ public class ElevatorPanel{
         elevatorPanelFrame.setLayout(null);
         elevatorPanelFrame.setVisible(true);
         
+        cabController = new Controller.CabController();
     }
     
     void enableButton(){
@@ -165,6 +170,35 @@ public class ElevatorPanel{
     private class GroundFloorButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            groundFloorButtonLights(true);
+            /*if(cabController.getCab().getFloor().equals(Floor.GroundFloor)){ kalau user tujuannya ke floor yang sama
+                ....
+                timer
+                groundFloorButtonLights(false);
+                closedoor
+            
+                langkah :
+                    1. nunggu beberapa detik
+                    2. lamput tombol mati
+                    3. pintu nya ketutup
+                user terkurung didalem
+            }
+            else{
+                cabController.getProcess().add(Floor.GroundFloor);
+                try {
+                    
+                    cabController.move(Floor.GroundFloor, elevatorPanel, elevatorInfo);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                groundFloorButtonLights(turnOff);
+            }
+            
+            
+            
+            
+            
+            */
         }
         
     }
@@ -172,6 +206,35 @@ public class ElevatorPanel{
     private class FirstFloorButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            firstFloorButtonLights(true);
+            /*if(cabController.getCab().getFloor().equals(Floor.FirstFloor)){ kalau user tujuannya ke floor yang sama
+                ....
+                timer
+                firstFloorButtonLights(false);
+                closedoor
+            
+                langkah :
+                    1. nunggu beberapa detik
+                    2. lamput tombol mati
+                    3. pintu nya ketutup
+                user terkurung didalem
+            }
+            else{
+                cabController.getProcess().add(Floor.FirstFloor);
+                try {
+                    
+                    cabController.move(Floor.FirstFloor, elevatorPanel, elevatorInfo);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                firstFloorButtonLights(turnOff);
+            }
+            
+            
+            
+            
+            
+            */
         }
         
     }
@@ -179,6 +242,35 @@ public class ElevatorPanel{
     private class SecondFloorButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            secondFloorButtonLights(true);
+            /*if(cabController.getCab().getFloor().equals(Floor.SecondFloor)){ kalau user tujuannya ke floor yang sama
+                ....
+                timer
+                secondFloorButtonLights(false);
+                closedoor
+            
+                langkah :
+                    1. nunggu beberapa detik
+                    2. lamput tombol mati
+                    3. pintu nya ketutup
+                user terkurung didalem
+            }
+            else{
+                cabController.getProcess().add(Floor.SecondFloor);
+                try {
+                    
+                    cabController.move(Floor.SecondFloor, elevatorPanel, elevatorInfo);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SummonElevator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                secondFloorButtonLights(turnOff);
+            }
+            
+            
+            
+            
+            
+            */
         }
         
     }
